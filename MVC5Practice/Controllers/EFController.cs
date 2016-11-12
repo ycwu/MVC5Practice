@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Practice.Models;
+using System.Data.Entity.Validation;
 
 namespace MVC5Practice.Controllers
 {
@@ -24,7 +25,6 @@ namespace MVC5Practice.Controllers
         {
             var product = db.Product.Find(id);
             product.ProductName += "!";
-            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -36,7 +36,20 @@ namespace MVC5Practice.Controllers
                 if (item.Price.HasValue)
                     item.Price = item.Price.Value * 1.2m;
             }
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var vErrors in entityErrors.ValidationErrors)
+                    {
+                        throw new DbEntityValidationException(vErrors.PropertyName + " 發生錯誤:" + vErrors.ErrorMessage);
+                    }
+                }
+            }
             return RedirectToAction("Index");
         }
         // GET: EF/Details/5

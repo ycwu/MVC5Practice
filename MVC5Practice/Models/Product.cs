@@ -25,6 +25,7 @@ namespace MVC5Practice.Models
         [Required]
         public string ProductName { get; set; }
         [Required]
+        [Range(0,10)]
         public Nullable<decimal> Price { get; set; }
         [Required]
         public Nullable<bool> Active { get; set; }
