@@ -20,7 +20,25 @@ namespace MVC5Practice.Controllers
             var data = db.Product.Where(p => p.ProductName.Contains("White"));
             return View(data.OrderByDescending(p => p.ProductId).Take(10));
         }
+        public ActionResult Update(int id)
+        {
+            var product = db.Product.Find(id);
+            product.ProductName += "!";
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
+        public ActionResult Add20Percent()
+        {
+            var data = db.Product.Where(p => p.ProductName.Contains("White"));
+            foreach (var item in data)
+            {
+                if (item.Price.HasValue)
+                    item.Price = item.Price.Value * 1.2m;
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         // GET: EF/Details/5
         public ActionResult Details(int? id)
         {
