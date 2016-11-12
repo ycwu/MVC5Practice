@@ -240,6 +240,7 @@
       <DependentUpon>Fabrics.edmx</DependentUpon>
       <LastGenOutput>Fabrics.cs</LastGenOutput>
     </Content>
+    <Content Include="ReadMe.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\Fabrics.edmx">
