@@ -17,7 +17,7 @@ namespace MVC5Practice.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            return View(db.Product.OrderByDescending(p => p.ProductId).Take(10).ToList());
+            return View(db.Product.Where(p => p.IsDeleted == false).OrderByDescending(p => p.ProductId).Take(10).ToList());
         }
 
         // GET: Products/Details/5
@@ -110,7 +110,8 @@ namespace MVC5Practice.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Product.Find(id);
-            db.Product.Remove(product);
+            product.IsDeleted = true;
+            //db.Product.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
