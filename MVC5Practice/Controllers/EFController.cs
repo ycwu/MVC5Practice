@@ -28,30 +28,38 @@ namespace MVC5Practice.Controllers
             return RedirectToAction("Index");
         }
 
+        //public ActionResult Add20Percent()
+        //{
+        //    var data = db.Product.Where(p => p.ProductName.Contains("White"));
+        //    foreach (var item in data)
+        //    {
+        //        if (item.Price.HasValue)
+        //            item.Price = item.Price.Value * 1.2m;
+        //    }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbEntityValidationException ex)
+        //    {
+        //        foreach (var entityErrors in ex.EntityValidationErrors)
+        //        {
+        //            foreach (var vErrors in entityErrors.ValidationErrors)
+        //            {
+        //                throw new DbEntityValidationException(vErrors.PropertyName + " 發生錯誤:" + vErrors.ErrorMessage);
+        //            }
+        //        }
+        //    }
+        //    return RedirectToAction("Index");
+        //}
+
         public ActionResult Add20Percent()
         {
-            var data = db.Product.Where(p => p.ProductName.Contains("White"));
-            foreach (var item in data)
-            {
-                if (item.Price.HasValue)
-                    item.Price = item.Price.Value * 1.2m;
-            }
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                foreach (var entityErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var vErrors in entityErrors.ValidationErrors)
-                    {
-                        throw new DbEntityValidationException(vErrors.PropertyName + " 發生錯誤:" + vErrors.ErrorMessage);
-                    }
-                }
-            }
+            string str = "%White%";
+            db.Database.ExecuteSqlCommand("UPDATE dbo.Product SET Price=Price*1.2 WHERE ProductName LIKE @p0", str);
             return RedirectToAction("Index");
         }
+
         // GET: EF/Details/5
         public ActionResult Details(int? id)
         {
