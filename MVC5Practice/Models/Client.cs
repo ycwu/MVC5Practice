@@ -45,8 +45,8 @@ namespace MVC5Practice.Models
         public string Gender { get; set; }
 
         [Required]
-        [DisplayFormat(DataFormatString ="{0:yyyy/MM/dd}")]
-        //[DataType(DataType.Date,ErrorMessage ="{0:yyyy/MM/dd} 欄位格式 yyyy/MM/dd")]
+        //[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         [DisplayName("生日")]
         public Nullable<System.DateTime> DateOfBirth { get; set; }
 
