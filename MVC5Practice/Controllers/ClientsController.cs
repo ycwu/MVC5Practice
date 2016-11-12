@@ -39,6 +39,7 @@ namespace MVC5Practice.Controllers
         }
 
         // GET: Clients/Create
+        [ChildActionOnly]
         public ActionResult Create()
         {
             ViewBag.OccupationId = new SelectList(db.Occupation, "OccupationId", "OccupationName");
