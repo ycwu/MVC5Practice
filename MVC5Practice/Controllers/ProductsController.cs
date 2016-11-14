@@ -17,7 +17,8 @@ namespace MVC5Practice.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var data = repo.All().Where(p => p.IsDeleted == false).OrderByDescending(p => p.ProductId).Take(10).ToList();
+            var data = repo.GetDataOrderByProductId(10).ToList();
+            //var data = repo.All().Where(p => p.IsDeleted == false).OrderByDescending(p => p.ProductId).Take(10).ToList();
             //return View(db.Product.Where(p => p.IsDeleted == false).OrderByDescending(p => p.ProductId).Take(10).ToList());
             return View(data);
         }
