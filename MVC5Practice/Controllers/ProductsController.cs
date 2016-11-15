@@ -15,6 +15,7 @@ namespace MVC5Practice.Controllers
         //private FabricsEntities db = new FabricsEntities();
         ProductRepository repo = RepositoryHelper.GetProductRepository();
         // GET: Products
+        [Route("products/list")]
         public ActionResult Index()
         {
             var data = repo.GetDataOrderByProductId(10).ToList();
@@ -64,6 +65,7 @@ namespace MVC5Practice.Controllers
         }
 
         // GET: Products/Edit/5
+        [Route("prod/edit/{id}")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
