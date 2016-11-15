@@ -116,9 +116,7 @@ namespace MVC5Practice.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = repo.Find(id);
-            product.IsDeleted = true;
-            //db.Product.Remove(product);
-            //db.SaveChanges();
+            repo.Delete(product);
             repo.UnitOfWork.Commit();
             return RedirectToAction("Index");
         }

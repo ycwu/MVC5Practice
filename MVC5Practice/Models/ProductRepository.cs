@@ -19,6 +19,10 @@ namespace MVC5Practice.Models
             Product result = this.All().FirstOrDefault(p => p.ProductId == id);
             return result;
         }
+        public override void Delete(Product product)
+        {
+            product.IsDeleted = true;
+        }
     }
 
 	public  interface IProductRepository : IRepository<Product>
