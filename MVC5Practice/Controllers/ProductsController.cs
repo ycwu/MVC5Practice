@@ -10,7 +10,7 @@ using MVC5Practice.Models;
 
 namespace MVC5Practice.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : BaseController
     {
         //private FabricsEntities db = new FabricsEntities();
         ProductRepository repo = RepositoryHelper.GetProductRepository();

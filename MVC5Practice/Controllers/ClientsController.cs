@@ -11,7 +11,7 @@ using MVC5Practice.Models.ViewModels;
 
 namespace MVC5Practice.Controllers
 {
-    public class ClientsController : Controller
+    public class ClientsController : BaseController
     {
         private FabricsEntities db = new FabricsEntities();
 
