@@ -13,7 +13,7 @@ namespace MVC5Practice.Controllers
 {
     public class ClientsController : BaseController
     {
-        private FabricsEntities db = new FabricsEntities();
+        //private FabricsEntities db = new FabricsEntities();
 
         // GET: Clients
         public ActionResult Index(string search)
@@ -86,11 +86,13 @@ namespace MVC5Practice.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClientId,FirstName,MiddleName,LastName,Gender,DateOfBirth,CreditRating")] Client client)
+        [ModelStateExclude]
+        public ActionResult Edit(int id, FormCollection form)
         {
-            if (ModelState.IsValid)
+            var client = db.Client.Find(id);
+            //if (TryUpdateModel(client, null, null, new string[] { "IsAdmin" }))
+            if (TryUpdateModel(client, "", form.AllKeys, ViewData["Exclude"] as string[]))
             {
-                db.Entry(client).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
