@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Practice.Models.ViewModels;
+using System.Data.Entity.Validation;
 
 namespace MVC5Practice.Controllers
 {
     [LocalDebugOnly]
+    [HandleError(ExceptionType = typeof(DbEntityValidationException), View = "Error_DbEntityValidationException")]
     public class MBController : BaseController
     {
         // GET: MB
@@ -67,10 +69,9 @@ namespace MVC5Practice.Controllers
             }
             return View();
         }
-
         public ActionResult MyError()
         {
-            throw new InvalidOperationException("Error");
+            throw new DbEntityValidationException("Error");
             return View();
         }
     }
