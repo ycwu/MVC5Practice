@@ -168,7 +168,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionFilter\ModelStateExcludeAttribute.cs" />
+    <Compile Include="ActionFilters\LocalDebugOnlyAttribute.cs" />
+    <Compile Include="ActionFilters\ModelStateExcludeAttribute.cs" />
+    <Compile Include="ActionFilters\ShareDataAttribute.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />

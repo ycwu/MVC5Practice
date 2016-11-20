@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MVC5Practice
+namespace MVC5Practice.Controllers
 {
     public class ModelStateExcludeAttribute : ActionFilterAttribute
     {

@@ -11,11 +11,13 @@ using MVC5Practice.Models.ViewModels;
 
 namespace MVC5Practice.Controllers
 {
+    //[Authorize(Users ="admin,manager")]
+    //[RequireHttps]
     public class ClientsController : BaseController
     {
         //private FabricsEntities db = new FabricsEntities();
-
         // GET: Clients
+        //[OutputCache(Duration = 30, Location = System.Web.UI.OutputCacheLocation.Server)]
         public ActionResult Index(string search)
         {
             var client = db.Client.Include(c => c.Occupation);
