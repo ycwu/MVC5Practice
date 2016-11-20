@@ -18,12 +18,19 @@ namespace MVC5Practice.Controllers
         //private FabricsEntities db = new FabricsEntities();
         // GET: Clients
         //[OutputCache(Duration = 30, Location = System.Web.UI.OutputCacheLocation.Server)]
-        public ActionResult Index(string search)
+        public ActionResult Index(string search,int? CreditRating,string Gender)
         {
             var client = db.Client.Include(c => c.Occupation);
             if (!string.IsNullOrEmpty(search))
                 client = client.Where(p => p.FirstName.Contains(search));
-            return View(client.OrderByDescending(p => p.ClientId).Take(10).ToList());
+
+            client = client.OrderByDescending(p => p.ClientId).Take(10);
+
+            var options = (from p in db.Client select p.CreditRating).Distinct().OrderBy(p => p).ToList();
+            ViewBag.CreditRating = new SelectList(options);
+            ViewBag.Gender = new SelectList(new string[] { "M", "F" });
+
+            return View(client);
         }
 
         // GET: Clients/Details/5
