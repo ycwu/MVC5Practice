@@ -13,5 +13,10 @@ namespace MVC5Practice.Controllers
         {
             return View();
         }
+
+        public ActionResult NewIndex()
+        {
+            return View();
+        }
     }
 }
