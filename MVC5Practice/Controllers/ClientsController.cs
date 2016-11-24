@@ -13,6 +13,7 @@ namespace MVC5Practice.Controllers
 {
     //[Authorize(Users ="admin,manager")]
     //[RequireHttps]
+    [Authorize]
     public class ClientsController : BaseController
     {
         //private FabricsEntities db = new FabricsEntities();

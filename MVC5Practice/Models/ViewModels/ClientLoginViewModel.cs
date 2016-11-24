@@ -9,18 +9,18 @@ namespace MVC5Practice.Models.ViewModels
 {
     public class ClientLoginViewModel
     {
-        [Required]
+        //[Required]
         [StringLength(10, ErrorMessage = "{0} 最大不得超過 {1} 個字元")]
         [DisplayName("名")]
         public string FirstName { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(10, ErrorMessage = "{0} 最大不得超過 {1} 個字元")]
         [DisplayName("中間名")]
         [DataType(DataType.Password)]
         public string MiddleName { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(10, ErrorMessage = "{0} 最大不得超過 {1} 個字元")]
         [DisplayName("姓")]
         public string LastName { get; set; }
@@ -29,5 +29,15 @@ namespace MVC5Practice.Models.ViewModels
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         [DisplayName("生日")]
         public Nullable<System.DateTime> DateOfBirth { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [DisplayName("電子信箱")]
+        public string Email { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [DisplayName("密碼")]
+        public string Password { get; set; }
     }
 }
