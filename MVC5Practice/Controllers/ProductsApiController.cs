@@ -5,11 +5,10 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using MVC5Practice.Models;
-using System.Web.Mvc;
+//using System.Web.Mvc;
 
 namespace MVC5Practice.Controllers
 {
@@ -22,6 +21,7 @@ namespace MVC5Practice.Controllers
             db.Configuration.LazyLoadingEnabled = false;
         }
 
+        [Route("prods")]
         // GET: api/ProductsApi
         public IQueryable<Product> GetProduct()
         {
@@ -29,6 +29,7 @@ namespace MVC5Practice.Controllers
         }
 
         // GET: api/ProductsApi/5
+        [Route("prods/{id}")]
         [ResponseType(typeof(Product))]
         public IHttpActionResult GetProduct(int id)
         {
@@ -39,6 +40,21 @@ namespace MVC5Practice.Controllers
             }
 
             return Ok(product);
+        }
+
+        // /prods/1554/orderlines
+        [Route("prods/{id}/orderlines")]
+        public IHttpActionResult GetProductOrderLine(int id)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            Product product = db.Product.Include("OrderLine").FirstOrDefault(p => p.ProductId == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product.OrderLine.ToList());
         }
 
         // PUT: api/ProductsApi/5
